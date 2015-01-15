@@ -1,0 +1,22 @@
+{
+    "name": "outeredge/edge-magento-module-catalogfilter",
+    "type": "magento-module",
+    "description": "Catalog Filter Module for Magento by outer/edge",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "outer/edge",
+            "email": "support@outeredgeuk.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+        "map": [
+            ["app/code/local/Edge/CatalogFilter", "app/code/local/Edge/CatalogFilter"],
+            ["app/etc/modules/Edge_CatalogFilter.xml", "app/etc/modules/Edge_CatalogFilter.xml"],
+            ["app/design/frontend/base/default/template/catalogfilter", "app/design/frontend/base/default/template/catalogfilter"]
+        ]
+    }
+}

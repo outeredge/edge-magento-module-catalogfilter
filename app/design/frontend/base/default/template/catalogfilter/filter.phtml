@@ -1,0 +1,43 @@
+<?php if ($this->isDropdown()): ?>
+    <select class="category-filter-attribute">
+        <?php $i=0; foreach ($this->getItems() as $_item): $i++; ?>
+        <?php if ($i===1): ?>
+        <option value="<?php echo $_item->getRemoveUrl() ?>"<?php if ($this->isUnset()): ?> selected="selected"<?php endif; ?>>
+            <?php echo $this->__('All') ?>
+        </option>
+        <?php endif; ?>
+        <option value="<?php echo $this->urlEscape($_item->getUrl()) ?>"<?php if ($_item->getActive()): ?> selected="selected"<?php endif; ?>>
+            <?php echo $_item->getLabel() ?>
+            <?php if ($this->shouldDisplayProductCount()): ?>
+            (<?php echo $_item->getCount() ?>)
+            <?php endif; ?>
+        </option>
+        <?php endforeach; ?>
+    </select>
+    <script>
+        $$('select.category-filter-attribute').invoke('observe', 'change', function(){
+            window.location.replace(this.getValue());
+        });
+    </script>
+
+<?php else: ?>
+
+    <ol>
+    <?php $i=0; foreach ($this->getItems() as $_item): $i++; ?>
+        <?php if ($i===1): ?>
+        <li<?php if ($this->isUnset()): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $_item->getRemoveUrl() ?>"><?php echo $this->__('All') ?></a>
+        </li>
+        <?php endif; ?>
+        <li<?php if ($_item->getActive()): ?> class="active"<?php endif; ?>>
+            <?php if ($_item->getCount() > 0): ?>
+            <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
+            <?php else: echo $_item->getLabel() ?>
+            <?php endif; ?>
+            <?php if ($this->shouldDisplayProductCount()): ?>
+            (<?php echo $_item->getCount() ?>)
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+    </ol>
+<?php endif; ?>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Edge_CatalogFilter>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Catalog/>
+            </depends>
+        </Edge_CatalogFilter>
+    </modules>
+</config>

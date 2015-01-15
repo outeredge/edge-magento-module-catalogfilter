@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Edge_CatalogFilter>
+            <version>1.0.0</version>
+        </Edge_CatalogFilter>
+    </modules>
+    <global>
+        <blocks>
+            <catalogfilter>
+                <class>Edge_CatalogFilter_Block</class>
+            </catalogfilter>
+            <catalog>
+                <rewrite>
+                    <layer_filter_attribute>Edge_CatalogFilter_Block_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <models>
+            <catalogfilter>
+                <class>Edge_CatalogFilter_Model</class>
+            </catalogfilter>
+            <catalog>
+                <rewrite>
+                    <layer_filter_attribute>Edge_CatalogFilter_Model_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog>
+            <catalog_resource>
+                <rewrite>
+                    <layer_filter_attribute>Edge_CatalogFilter_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalog_resource>
+        </models>
+    </global>
+</config>
