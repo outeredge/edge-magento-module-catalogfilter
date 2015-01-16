@@ -1,0 +1,88 @@
+<?php
+    $minPrice = $this->_filter->getMinPrice();
+    $maxPrice = $this->_filter->getMaxPrice();
+
+    $currentMinPrice = $this->getCurrentMinPrice();
+    $currentMaxPrice = $this->getCurrentMaxPrice();
+?>
+
+<div class="price-slider">
+    <div>
+        &pound;<span id="min-value"><?php echo $minPrice ?></span>
+        <input class="min" name="min-slider" type="range" min="<?php echo $minPrice ?>" max="<?php echo $maxPrice - 1 ?>" value="<?php echo $currentMinPrice ?>">
+        <input class="min" name="min" type="number" min="<?php echo $minPrice ?>" max="<?php echo $maxPrice - 1 ?>" value="<?php echo $currentMinPrice ?>">
+    </div>
+    <div>
+        &pound;<span id="max-value"><?php echo $maxPrice ?></span>
+        <input class="max" name="max-slider" type="range" min="<?php echo $minPrice + 1 ?>" max="<?php echo $maxPrice ?>" value="<?php echo $currentMaxPrice ?>">
+        <input class="max" name="max" type="number" min="<?php echo $minPrice + 1 ?>" max="<?php echo $maxPrice ?>" value="<?php echo $currentMaxPrice ?>">
+    </div>
+    <a id="price-update" href="#">Update</a>
+</div>
+
+<script>
+
+    function updateMinMaxValues(el){
+        var type = $(el).readAttribute('class');
+
+        var value = parseInt($(el).getValue());
+        var minValue = parseInt($(el).readAttribute('min'));
+        var maxValue = parseInt($(el).readAttribute('max'));
+
+        if(value < minValue)
+            value = minValue;
+        if(value > maxValue)
+            value = maxValue;
+
+        $(type + '-value').update(value);
+        $$('.price-slider .' + type).invoke('setValue', value);
+        $$('.price-slider .' + (type === 'min' ? 'max' : 'min')).invoke('writeAttribute', type, (type === 'min' ? value + 1 : value - 1));
+    }
+
+    $$('.price-slider input').invoke('observe', 'input', function(){
+        updateMinMaxValues(this);
+    });
+    $$('.price-slider input[type="range"]').each(function(el){
+        updateMinMaxValues(el);
+    });
+
+    $('price-update').observe('click', function(e){
+        e.preventDefault();
+
+        var min = $$('.price-slider input[name="min"]')[0].getValue();
+        var max = $$('.price-slider input[name="max"]')[0].getValue();
+
+        var priceQuery = 'price=' + min + '-' + max;
+
+        var search = window.location.search;
+
+        if(search)
+            if(search.indexOf('price=') > -1)
+                // replace price with new one
+                search = search.replace(/price=\d*-\d*/, priceQuery);
+            else
+                search += '&' + priceQuery;
+        else
+            search = '?' + priceQuery;
+
+        var pageUrl = window.location.origin + window.location.pathname + search;
+        if(pageUrl !== window.location.href)
+            window.location.href = pageUrl;
+    });
+</script>
+
+<style type="text/css">
+    .price-slider:after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .price-slider div{
+        float: left;
+        width: 50%;
+    }
+    .price-slider input{
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>

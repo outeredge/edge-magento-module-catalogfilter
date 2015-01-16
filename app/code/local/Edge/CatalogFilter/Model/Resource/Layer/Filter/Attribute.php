@@ -17,6 +17,7 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Attribute extends Mage_Cata
         $select->reset(Zend_Db_Select::ORDER);
         $select->reset(Zend_Db_Select::LIMIT_COUNT);
         $select->reset(Zend_Db_Select::LIMIT_OFFSET);
+        $select->reset(Zend_Db_Select::WHERE);
 
         $connection = $this->_getReadAdapter();
         $attribute  = $filter->getAttributeModel();

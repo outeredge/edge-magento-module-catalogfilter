@@ -6,9 +6,9 @@
                 <layered_navigation>
                     <fields>
                         <selection_type translate="label">
-                            <label>Selection Type</label>
+                            <label>Attribute Selection Type</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>15</sort_order>
+                            <sort_order>100</sort_order>
                             <source_model>catalogfilter/system_config_source_selectionType</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>

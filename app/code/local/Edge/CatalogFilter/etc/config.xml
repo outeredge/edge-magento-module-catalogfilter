@@ -13,6 +13,7 @@
             <catalog>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Block_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_price>Edge_CatalogFilter_Block_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog>
         </blocks>
@@ -23,13 +24,20 @@
             <catalog>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Model_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_price>Edge_CatalogFilter_Model_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog>
             <catalog_resource>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_price>Edge_CatalogFilter_Model_Resource_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog_resource>
+            <adminhtml>
+                <rewrite>
+                    <system_config_source_price_step>Edge_CatalogFilter_Model_System_Config_Source_Price_Step</system_config_source_price_step>
+                </rewrite>
+            </adminhtml>
         </models>
     </global>
 </config>
