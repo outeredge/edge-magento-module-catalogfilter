@@ -13,7 +13,7 @@ class Edge_CatalogFilter_Block_Layer_Filter_Price extends Mage_Catalog_Block_Lay
     {
         parent::__construct();
 
-        if (Mage::getStoreConfig('catalog/layered_navigation/price_range_calculation') === 'slider') {
+        if (Mage::helper('catalogfilter')->priceIsSlider()){
             $this->setTemplate('catalogfilter/price.phtml');
         }
     }

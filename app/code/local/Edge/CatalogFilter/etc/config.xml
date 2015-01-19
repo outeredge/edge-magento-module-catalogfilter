@@ -39,5 +39,10 @@
                 </rewrite>
             </adminhtml>
         </models>
+        <helpers>
+            <catalogfilter>
+                <class>Edge_CatalogFilter_Helper</class>
+            </catalogfilter>
+        </helpers>
     </global>
 </config>

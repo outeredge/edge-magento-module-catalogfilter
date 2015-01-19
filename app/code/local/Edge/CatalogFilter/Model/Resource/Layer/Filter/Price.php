@@ -10,6 +10,10 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_
      */
     public function applyPriceRange($filter)
     {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::applyPriceRange($filter);
+        }
+
         $interval = $filter->getInterval();
         if (!$interval) {
             return $this;
@@ -52,6 +56,10 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_
      */
     public function loadPrices($filter, $limit, $offset = null, $lowerPrice = null, $upperPrice = null)
     {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::loadPrices($filter, $limit, $offset, $lowerPrice, $upperPrice);
+        }
+
         $select = $this->_getSelect($filter);
         $priceExpression = $this->_getPriceExpression($filter, $select);
         $select->columns(array(
@@ -78,6 +86,10 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_
      */
     public function loadPreviousPrices($filter, $price, $index, $lowerPrice = null)
     {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::loadPreviousPrices($filter, $price, $index, $lowerPrice);
+        }
+
         $select = $this->_getSelect($filter);
         $priceExpression = $this->_getPriceExpression($filter, $select);
         $select->columns('COUNT(*)')->where("$priceExpression <= " . $this->_getComparingValue($price, $filter, false));
@@ -103,6 +115,10 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_
      */
     public function loadNextPrices($filter, $price, $rightIndex, $upperPrice = null)
     {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::loadNextPrices($filter, $price, $rightIndex, $upperPrice);
+        }
+
         $select = $this->_getSelect($filter);
 
         $pricesSelect = clone $select;
@@ -141,6 +157,10 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_
      */
     public function applyFilterToCollection($filter, $range, $index)
     {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::applyFilterToCollection($filter, $range, $index);
+        }
+
         $select = $filter->getLayer()->getProductCollection()->getSelect();
         $priceExpr = $this->_getPriceExpression($filter, $select);
         $filter->getLayer()->getProductCollection()

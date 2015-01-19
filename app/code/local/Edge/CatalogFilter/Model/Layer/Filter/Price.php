@@ -59,7 +59,10 @@ class Edge_CatalogFilter_Model_Layer_Filter_Price extends Mage_Catalog_Model_Lay
      */
     public function getItemsCount()
     {
-        return true;
+        if (Mage::helper('catalogfilter')->priceIsSlider()){
+            return true;
+        }
+        return parent::getItemsCount();
     }
 
     /**
@@ -70,44 +73,48 @@ class Edge_CatalogFilter_Model_Layer_Filter_Price extends Mage_Catalog_Model_Lay
      *
      * @return Mage_Catalog_Model_Layer_Filter_Price
      */
-//    public function apply(Zend_Controller_Request_Abstract $request, $filterBlock)
-//    {
-//        /**
-//         * Filter must be string: $fromPrice-$toPrice
-//         */
-//        $filter = $request->getParam($this->getRequestVar());
-//        if (!$filter) {
-//            return $this;
-//        }
-//
-//        //validate filter
-//        $filterParams = explode(',', $filter);
-//        $filter = $this->_validateFilter($filterParams[0]);
-//        if (!$filter) {
-//            return $this;
-//        }
-//
-//        list($from, $to) = $filter;
-//
-//        $this->setInterval(array($from, $to));
-//
-//        $priorFilters = array();
-//        for ($i = 1; $i < count($filterParams); ++$i) {
-//            $priorFilter = $this->_validateFilter($filterParams[$i]);
-//            if ($priorFilter) {
-//                $priorFilters[] = $priorFilter;
-//            } else {
-//                //not valid data
-//                $priorFilters = array();
-//                break;
-//            }
-//        }
-//        if ($priorFilters) {
-//            $this->setPriorIntervals($priorFilters);
-//        }
-//
-//        $this->_applyPriceRange();
-//
-//        return $this;
-//    }
+    public function apply(Zend_Controller_Request_Abstract $request, $filterBlock)
+    {
+        if (!Mage::helper('catalogfilter')->priceIsSlider()) {
+            return parent::apply($request, $filterBlock);
+        }
+
+        /**
+         * Filter must be string: $fromPrice-$toPrice
+         */
+        $filter = $request->getParam($this->getRequestVar());
+        if (!$filter) {
+            return $this;
+        }
+
+        //validate filter
+        $filterParams = explode(',', $filter);
+        $filter = $this->_validateFilter($filterParams[0]);
+        if (!$filter) {
+            return $this;
+        }
+
+        list($from, $to) = $filter;
+
+        $this->setInterval(array($from, $to));
+
+        $priorFilters = array();
+        for ($i = 1; $i < count($filterParams); ++$i) {
+            $priorFilter = $this->_validateFilter($filterParams[$i]);
+            if ($priorFilter) {
+                $priorFilters[] = $priorFilter;
+            } else {
+                //not valid data
+                $priorFilters = array();
+                break;
+            }
+        }
+        if ($priorFilters) {
+            $this->setPriorIntervals($priorFilters);
+        }
+
+        $this->_applyPriceRange();
+
+        return $this;
+    }
 }
