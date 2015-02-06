@@ -77,6 +77,9 @@ class Edge_CatalogFilter_Model_Layer_Filter_Item extends Mage_Catalog_Model_Laye
     protected function _getCurrentValues()
     {
         $current = Mage::app()->getRequest()->getParam($this->getFilter()->getRequestVar());
+        if (!$current){
+            return array();
+        }
         return explode('-', $current);
     }
 }
