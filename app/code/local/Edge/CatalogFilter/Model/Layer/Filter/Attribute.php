@@ -2,6 +2,9 @@
 
 class Edge_CatalogFilter_Model_Layer_Filter_Attribute extends Mage_Catalog_Model_Layer_Filter_Attribute
 {
+    const FILTER_TYPE_SINGLE = 'single';
+    const FILTER_TYPE_MULTIPLE = 'multiple';
+
     /**
      * Apply attribute option filter to product collection
      *
@@ -15,9 +18,18 @@ class Edge_CatalogFilter_Model_Layer_Filter_Attribute extends Mage_Catalog_Model
         if (is_array($filter)) {
             return $this;
         }
-        $text = $this->_getOptionText($filter);
-        if ($filter && strlen($text)) {
-            $this->_getResource()->applyFilterToCollection($this, $filter);
+
+        if ($this->getAttributeModel()->getFilterType() === self::FILTER_TYPE_MULTIPLE) {
+            if ($filter){
+                $filters = explode('-', $filter);
+                $this->_getResource()->applyMultipleFilterToCollection($this, $filters);
+            }
+        }
+        else {
+            $text = $this->_getOptionText($filter);
+            if ($filter && strlen($text)) {
+                $this->_getResource()->applyFilterToCollection($this, $filter);
+            }
         }
         return $this;
     }
