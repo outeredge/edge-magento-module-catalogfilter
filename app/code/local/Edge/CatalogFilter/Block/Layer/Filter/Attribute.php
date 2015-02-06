@@ -10,7 +10,12 @@ class Edge_CatalogFilter_Block_Layer_Filter_Attribute extends Mage_Catalog_Block
 
     public function isDropdown()
     {
-        return Mage::getStoreConfig('catalog/layered_navigation/selection_type') === 'dropdown';
+        return $this->_filter->getAttributeModel()->getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_SINGLE;
+    }
+
+    public function isMultiple()
+    {
+        return $this->_filter->getAttributeModel()->getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE;
     }
 
     public function isUnset()

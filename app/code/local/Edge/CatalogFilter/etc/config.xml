@@ -25,6 +25,7 @@
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Model_Layer_Filter_Attribute</layer_filter_attribute>
                     <layer_filter_price>Edge_CatalogFilter_Model_Layer_Filter_Price</layer_filter_price>
+                    <layer_filter_item>Edge_CatalogFilter_Model_Layer_Filter_Item</layer_filter_item>
                 </rewrite>
             </catalog>
             <catalog_resource>
@@ -44,5 +45,25 @@
                 <class>Edge_CatalogFilter_Helper</class>
             </catalogfilter>
         </helpers>
+        <resources>
+            <catalogfilter_setup>
+                <setup>
+                    <module>Edge_CatalogFilter</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </catalogfilter_setup>
+        </resources>
+        <events>
+            <adminhtml_catalog_product_attribute_edit_prepare_form>
+                <observers>
+                    <catalogfilter_filter_type>
+                        <class>Edge_CatalogFilter_Model_Observer_form</class>
+                        <method>addFilterTypeField</method>
+                    </catalogfilter_filter_type>
+                </observers>
+            </adminhtml_catalog_product_attribute_edit_prepare_form>
+        </events>
     </global>
 </config>

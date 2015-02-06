@@ -20,6 +20,21 @@
         });
     </script>
 
+<?php elseif ($this->isMultiple()): ?>
+
+    <ol>
+    <?php foreach ($this->getItems() as $_item): ?>
+        <li<?php if ($_item->getActive()): ?> class="active"<?php endif; ?>>
+            <a href="<?php echo $_item->getUrl() ?>">
+                <?php echo $_item->getLabel() ?>
+            </a>
+            <?php if ($this->shouldDisplayProductCount()): ?>
+            (<?php echo $_item->getCount() ?>)
+            <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+    </ol>
+
 <?php else: ?>
 
     <ol>
