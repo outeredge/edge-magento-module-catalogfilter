@@ -50,7 +50,6 @@ class Edge_CatalogFilter_Model_Layer_Filter_Attribute extends Mage_Catalog_Model
                 $itemData['count']
             );
             $item->setActive($itemData['active']);
-
             $items[] = $item;
         }
         $this->_items = $items;

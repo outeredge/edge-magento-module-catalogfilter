@@ -9,7 +9,7 @@ class Edge_CatalogFilter_Model_Layer_Filter_Item extends Mage_Catalog_Model_Laye
      */
     public function getUrl()
     {
-        if ($this->getFilter()->getAttributeModel()->getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE) {
+        if ($this->_attributeIsMultiple()) {
 
             // Return a remove url if we are filtering already
             if ($this->getActive()){
@@ -68,7 +68,7 @@ class Edge_CatalogFilter_Model_Layer_Filter_Item extends Mage_Catalog_Model_Laye
 
     public function getActive()
     {
-        if ($this->getFilter()->getAttributeModel()->getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE) {
+        if ($this->_attributeIsMultiple()) {
             return in_array($this->getValue(), $this->_getCurrentValues());
         }
         return parent::getActive();
@@ -81,5 +81,15 @@ class Edge_CatalogFilter_Model_Layer_Filter_Item extends Mage_Catalog_Model_Laye
             return array();
         }
         return explode('-', $current);
+    }
+
+    protected function _attributeIsMultiple()
+    {
+        if ($this->getFilter() instanceof Mage_Catalog_Model_Layer_Filter_Category) {
+            $filterType = Mage::getStoreConfig('catalog/layered_navigation/category_filter_type');
+        } else {
+            $filterType = $this->getFilter()->getAttributeModel()->getFilterType();
+        }
+        return $filterType === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE;
     }
 }

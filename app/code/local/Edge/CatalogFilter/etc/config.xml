@@ -13,6 +13,7 @@
             <catalog>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Block_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_category>Edge_CatalogFilter_Block_Layer_Filter_Category</layer_filter_category>
                     <layer_filter_price>Edge_CatalogFilter_Block_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog>
@@ -24,6 +25,7 @@
             <catalog>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Model_Layer_Filter_Attribute</layer_filter_attribute>
+                    <layer_filter_category>Edge_CatalogFilter_Model_Layer_Filter_Category</layer_filter_category>
                     <layer_filter_price>Edge_CatalogFilter_Model_Layer_Filter_Price</layer_filter_price>
                     <layer_filter_item>Edge_CatalogFilter_Model_Layer_Filter_Item</layer_filter_item>
                 </rewrite>
