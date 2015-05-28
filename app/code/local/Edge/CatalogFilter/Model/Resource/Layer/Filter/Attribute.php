@@ -28,6 +28,8 @@ class Edge_CatalogFilter_Model_Resource_Layer_Filter_Attribute extends Mage_Cata
             array()
         );
 
+        $collection->getSelect()->group('e.entity_id');
+
         return $this;
     }
 
