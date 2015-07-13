@@ -90,6 +90,6 @@ class Edge_CatalogFilter_Model_Layer_Filter_Item extends Mage_Catalog_Model_Laye
         } else {
             $filterType = $this->getFilter()->getAttributeModel()->getFilterType();
         }
-        return $filterType === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE;
+        return $filterType === Edge_CatalogFilter_Helper_Data::FILTER_TYPE_MULTIPLE;
     }
 }

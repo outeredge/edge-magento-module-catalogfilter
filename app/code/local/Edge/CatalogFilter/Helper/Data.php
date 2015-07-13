@@ -2,6 +2,9 @@
 
 class Edge_CatalogFilter_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const FILTER_TYPE_SINGLE = 'single';
+    const FILTER_TYPE_MULTIPLE = 'multiple';
+
     protected $_priceIsSlider;
 
     public function priceIsSlider()

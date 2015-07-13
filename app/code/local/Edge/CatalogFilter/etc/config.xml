@@ -17,6 +17,11 @@
                     <layer_filter_price>Edge_CatalogFilter_Block_Layer_Filter_Price</layer_filter_price>
                 </rewrite>
             </catalog>
+            <catalogsearch>
+                <rewrite>
+                    <layer_filter_attribute>Edge_CatalogFilter_Block_CatalogSearch_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalogsearch>
         </blocks>
         <models>
             <catalogfilter>
@@ -30,6 +35,11 @@
                     <layer_filter_item>Edge_CatalogFilter_Model_Layer_Filter_Item</layer_filter_item>
                 </rewrite>
             </catalog>
+            <catalogsearch>
+                <rewrite>
+                    <layer_filter_attribute>Edge_CatalogFilter_Model_CatalogSearch_Layer_Filter_Attribute</layer_filter_attribute>
+                </rewrite>
+            </catalogsearch>
             <catalog_resource>
                 <rewrite>
                     <layer_filter_attribute>Edge_CatalogFilter_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
