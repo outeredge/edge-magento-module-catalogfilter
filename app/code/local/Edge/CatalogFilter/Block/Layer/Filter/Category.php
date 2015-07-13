@@ -15,12 +15,12 @@ class Edge_CatalogFilter_Block_Layer_Filter_Category extends Mage_Catalog_Block_
 
     public function isDropdown()
     {
-        return $this->_getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_SINGLE;
+        return $this->_getFilterType() === Edge_CatalogFilter_Helper_Data::FILTER_TYPE_SINGLE;
     }
 
     public function isMultiple()
     {
-        return $this->_getFilterType() === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE;
+        return $this->_getFilterType() === Edge_CatalogFilter_Helper_Data::FILTER_TYPE_MULTIPLE;
     }
 
     public function isUnset()

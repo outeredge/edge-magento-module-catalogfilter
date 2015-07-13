@@ -16,7 +16,7 @@ class Edge_CatalogFilter_Model_Layer_Filter_Category extends Mage_Catalog_Model_
             return $this;
         }
 
-        if (Mage::getStoreConfig('catalog/layered_navigation/category_filter_type') === Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE) {
+        if (Mage::getStoreConfig('catalog/layered_navigation/category_filter_type') === Edge_CatalogFilter_Helper_Data::FILTER_TYPE_MULTIPLE) {
             $filters = explode('-', $filter);
 
             $collectionFilter = array();

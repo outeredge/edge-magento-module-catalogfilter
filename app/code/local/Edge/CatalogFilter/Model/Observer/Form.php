@@ -18,11 +18,11 @@ class Edge_CatalogFilter_Model_Observer_Form
                     'label' => Mage::helper('adminhtml')->__('Single List')
                 ),
                 array(
-                    'value' => Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_SINGLE,
+                    'value' => Edge_CatalogFilter_Helper_Data::FILTER_TYPE_SINGLE,
                     'label' => Mage::helper('adminhtml')->__('Single Dropdown')
                 ),
                 array(
-                    'value' => Edge_CatalogFilter_Model_Layer_Filter_Attribute::FILTER_TYPE_MULTIPLE,
+                    'value' => Edge_CatalogFilter_Helper_Data::FILTER_TYPE_MULTIPLE,
                     'label' => Mage::helper('adminhtml')->__('Multiple List')
                 )
             )
