@@ -11,7 +11,7 @@ trait Edge_CatalogFilter_Model_Trait_Attribute
      */
     public function apply(Zend_Controller_Request_Abstract $request, $filterBlock)
     {
-        $filter = $request->getParam($this->_requestVar);
+        $filter = $request->getParam($this->getRequestVar());
         if (is_array($filter)) {
             return $this;
         }
@@ -20,12 +20,14 @@ trait Edge_CatalogFilter_Model_Trait_Attribute
             if ($filter){
                 $filters = explode('-', $filter);
                 $this->_getResource()->applyMultipleFilterToCollection($this, $filters);
+                Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filters);
             }
         }
         else {
             $text = $this->_getOptionText($filter);
             if ($filter && strlen($text)) {
                 $this->_getResource()->applyFilterToCollection($this, $filter);
+                Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filter);
             }
         }
         return $this;
@@ -61,9 +63,9 @@ trait Edge_CatalogFilter_Model_Trait_Attribute
     protected function _getItemsData()
     {
         $attribute = $this->getAttributeModel();
-        $this->_requestVar = $attribute->getAttributeCode();
+        $this->setRequestVar($attribute->getAttributeCode());
 
-        $currentFilter = Mage::app()->getRequest()->getParam($this->_requestVar);
+        $currentFilter = Mage::app()->getRequest()->getParam($this->getRequestVar());
 
         $options = $attribute->getFrontend()->getSelectOptions();
         $optionsCount = $this->_getResource()->getCount($this);

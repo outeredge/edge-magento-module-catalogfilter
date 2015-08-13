@@ -115,6 +115,8 @@ class Edge_CatalogFilter_Model_Layer_Filter_Price extends Mage_Catalog_Model_Lay
 
         $this->_applyPriceRange();
 
+        Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filter);
+
         return $this;
     }
 }

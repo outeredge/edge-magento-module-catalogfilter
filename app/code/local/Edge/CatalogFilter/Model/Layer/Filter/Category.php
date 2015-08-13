@@ -27,6 +27,8 @@ class Edge_CatalogFilter_Model_Layer_Filter_Category extends Mage_Catalog_Model_
             $this->getLayer()->getProductCollection()
                 ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
                 ->addAttributeToFilter('category_id', $collectionFilter);
+
+            Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filters);
         }
         else {
 
@@ -38,6 +40,8 @@ class Edge_CatalogFilter_Model_Layer_Filter_Category extends Mage_Catalog_Model_
             $this->getLayer()->getProductCollection()
                 ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
                 ->addAttributeToFilter('category_id', array('eq' => $filter));
+
+            Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filter);
         }
 
         return $this;
@@ -70,7 +74,7 @@ class Edge_CatalogFilter_Model_Layer_Filter_Category extends Mage_Catalog_Model_
      */
     protected function _getItemsData()
     {
-        $currentFilter = Mage::app()->getRequest()->getParam($this->_requestVar);
+        $currentFilter = Mage::app()->getRequest()->getParam($this->getRequestVar());
         $categories = $this->getCategory()->getChildrenCategories();
 
         $this->getLayer()->getProductCollection()
