@@ -41,10 +41,10 @@ class Edge_CatalogFilter_Model_Layer_Filter_Category extends Mage_Catalog_Model_
                 ->joinField('category_id', 'catalog/category_product', 'category_id', 'product_id = entity_id', null, 'left')
                 ->addAttributeToFilter('category_id', array('eq' => $filter));
 
-            $this->getLayer()->getProductCollection()->getSelect()->group('e.entity_id');
-
             Mage::getSingleton('catalogfilter/layer_state')->addFilter($this->getRequestVar(), $filter);
         }
+
+        $this->getLayer()->getProductCollection()->getSelect()->group('e.entity_id');
 
         return $this;
     }
