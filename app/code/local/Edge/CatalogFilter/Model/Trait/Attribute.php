@@ -93,6 +93,13 @@ trait Edge_CatalogFilter_Model_Trait_Attribute
             }
         }
 
+        //alphabetically sort
+        if (Mage::getStoreConfig('catalog/layered_navigation/alphabetic_sort')) {
+            uasort($data, function ($a, $b) {
+                return strcmp($a['label'], $b['label']);
+            });
+        }
+
         return $data;
     }
 }
